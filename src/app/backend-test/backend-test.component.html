@@ -1,0 +1,37 @@
+<div class="bg-dark text-white container-fluid h-100">
+    <ng-container *ngIf="(allResponseStream | async) || (responseStream | async)"></ng-container>
+    <ng-container *ngIf="response">
+
+    </ng-container>
+
+    <div class="mb-5 pt-4">
+        <h2 class="text-center">Test streaming for backend.</h2>
+    </div>
+    <div class="row h-75">
+        <div class="col-5 h-100">
+            <video src="http://localhost:8080/api/v1/videos/watch/38" controls height="300" width="400"></video>
+        </div>
+        <div class="col-2 d-flex h-100">
+            <div class="vr  h-100" style="margin: auto;"></div>
+        </div>
+        <div class="col-5 h-100 d-flex flex-column justify-content-start align-items-start">
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Add video to upload: </label>
+                <input class="form-control" type="file" id="formFile" (change)="bindFile($event)">
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Add video title: </label>
+                <input placeholder="Video Title" class="form-control" type="text" id="title" [(ngModel)]="videoTitle">
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Add video description: </label>
+                <textarea placeholder="Video Description" class="form-control" type="text" id="desc"
+                    [(ngModel)]="videoDesc"></textarea>
+            </div>
+            <div class="mt-4 ms-5">
+                <button type="button" class="btn btn-lg btn-outline-light" (click)="saveVideo()"
+                    [disabled]="disabledCondition()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
